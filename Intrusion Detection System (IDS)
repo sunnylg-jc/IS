@@ -1,0 +1,8 @@
+Z:\>ipconfig/all
+
+Z:\>TRACERT nc1-65
+
+Z:\>netstat -a
+
+Z:\>telnet 10.1.1.210
+
