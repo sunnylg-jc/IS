@@ -1,0 +1,22 @@
+pip install pycryptodome
+
+from Crypto.Cipher import DES
+from Crypto.Util.Padding import pad, unpad
+def des_encrypt(plaintext, key):
+  key = bytes.fromhex(key)
+  cipher = DES.new(key, DES.MODE_ECB)
+  ciphertext = cipher.encrypt(pad(plaintext.encode('utf-8'), DES.block_size))
+  return ciphertext.hex()
+
+def des_decrypt(ciphertext, key):
+  key = bytes.fromhex(key)
+  cipher = DES.new(key, DES.MODE_ECB)
+  decryptedtext = unpad(cipher.decrypt(bytes.fromhex(ciphertext)), DES.block_size)
+  return decryptedtext.decode('utf-8')
+
+plaintext = input("Enter your text:")
+key = "133457799BBCDFF1"
+ciphertext = des_encrypt(plaintext, key)
+print("Ciphertext:", ciphertext)
+decryptedtext = des_decrypt(ciphertext, key)
+print("Decrypted text:", decryptedtext)
