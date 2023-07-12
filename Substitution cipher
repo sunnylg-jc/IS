@@ -1,0 +1,25 @@
+#Substitution Cipher
+import string
+message = input("Enter the message: ")
+key = int(input("Enter the key: "))
+all_letters = string.ascii_letters
+dict1 = {
+    letter: all_letters[(i + key) % len(all_letters)]
+    for i, letter in enumerate(all_letters)
+}
+
+ciphertext = "".join(
+    [dict1[letter] if letter in all_letters else letter for letter in message]
+)
+print("ciphertext:", ciphertext)
+
+dict2 = {
+    letter: all_letters[(i - key) % len(all_letters)]
+    for i, letter in enumerate(all_letters)
+}
+
+plaintext = "".join(
+    [dict2[letter] if letter in all_letters else letter for letter in ciphertext]
+)
+print("recovered plaintext:", plaintext)
+
